@@ -43,6 +43,8 @@ namespace PROJEKT_Mattias_Waldehagen
                 renameButton.ToolTip = "Rename - Changes the name of a file or directory.";
                 typeButton.ToolTip = "Display Contents - Shows the contents of a text file.";
                 exitButton.ToolTip = "Exit - Closes the command prompt window.";
+                helpButton.ToolTip = "More information on commands, with examples.";
+                pathButton.ToolTip = "Set where your interaction with CMD will start.";
                 helpButton.Content = "HELP";
                 pathButton.Content = "PATH";
             }
@@ -57,6 +59,8 @@ namespace PROJEKT_Mattias_Waldehagen
                 renameButton.ToolTip = "Byt namn - Ändrar namnet på en fil eller katalog.";
                 typeButton.ToolTip = "Visa innehåll - Visar innehållet i en textfil.";
                 exitButton.ToolTip = "Avsluta - Stänger kommandotolksfönstret.";
+                helpButton.ToolTip = "Mer information om kommandon, med exempel.";
+                pathButton.ToolTip = "Ställ in var din interaktion med CMD ska starta.";
                 helpButton.Content = "HJÄLP";
                 pathButton.Content = "SÖKVÄG";
             }
