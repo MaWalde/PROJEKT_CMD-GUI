@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 
 namespace PROJEKT_Mattias_Waldehagen
 {
@@ -20,17 +23,77 @@ namespace PROJEKT_Mattias_Waldehagen
     /// </summary>
     public partial class MainWindow : Window
     {
+        Process cmdProc = new Process();
+        string language = "EN";
+
         public MainWindow()
         {
             InitializeComponent();
+            InitCmdProcess();
+        }
+
+        private void InitCmdProcess()
+        {
+
+            cmdProc.StartInfo.FileName = "cmd.exe";
+            cmdProc.StartInfo.RedirectStandardInput = true;
+            cmdProc.StartInfo.RedirectStandardOutput = true;
+            cmdProc.StartInfo.RedirectStandardError = true;
+            cmdProc.StartInfo.CreateNoWindow = true;
+            cmdProc.StartInfo.UseShellExecute = false;
+
+            cmdProc.OutputDataReceived += new DataReceivedEventHandler(CmdOutputDataHandler);
+            cmdProc.ErrorDataReceived += new DataReceivedEventHandler(CmdErrorDataHandler);
+
+            cmdProc.Start();
+
+            cmdProc.BeginOutputReadLine();
+            cmdProc.BeginErrorReadLine();
+        }
+
+        private void CmdOutputDataHandler(object sendingProc, DataReceivedEventArgs outLine)
+        {
+            if (!String.IsNullOrEmpty(outLine.Data))
+            { 
+                AppendText(outLine.Data);
+            }
+        }
+
+        private void CmdErrorDataHandler(object sendingProcess, DataReceivedEventArgs outLine)
+        {
+            if(!String.IsNullOrEmpty(outLine.Data))
+            {
+                AppendText(outLine.Data);
+            }
+        }
+
+        private void AppendText(string text)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                outputTextBlock.Text += text + Environment.NewLine;
+            });
         }
 
         private void ExecuteCommand(string command)
         {
-            //TBD: CMD logik
+            if (cmdProc != null && !cmdProc.HasExited)
+            {
+                if (command.ToLower().Trim() == "exit")
+                {
+                    cmdProc.StandardInput.WriteLine("exit");
+                    cmdProc.StandardInput.Flush();
+                    cmdProc.WaitForExit();
+                }
+                else
+                {
+                    cmdProc.StandardInput.WriteLine(command);
+                    cmdProc.StandardInput.Flush();
+                }
+            }
         }
 
-        private void ToggleLanguage(string language)
+        private void ToggleLanguage()
         {
             if (language == "EN")
             {
@@ -67,7 +130,7 @@ namespace PROJEKT_Mattias_Waldehagen
         }
 
 
-        private void inputTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void inputTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -138,6 +201,31 @@ namespace PROJEKT_Mattias_Waldehagen
         {
             inputTextBox.Text = "exit";
             inputTextBox.Focus();
+        }
+
+        private void helpButton_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Show();
+        }
+
+        private void pathButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    string selectedPath = dialog.SelectedPath;
+                    SendToCMD(selectedPath);
+                }
+            }
+        }
+
+        private void SendToCMD(string path)
+        {
+            string command = $"cd \"{path}\"";
+            ExecuteCommand(command);
         }
     }
 }
