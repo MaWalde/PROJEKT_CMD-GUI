@@ -45,8 +45,19 @@ namespace PROJEKT_Mattias_Waldehagen
             cmdProc.StartInfo.CreateNoWindow = true;
             cmdProc.StartInfo.UseShellExecute = false;
 
+            //Handlers för output och errors
             cmdProc.OutputDataReceived += new DataReceivedEventHandler(CmdOutputDataHandler);
             cmdProc.ErrorDataReceived += new DataReceivedEventHandler(CmdErrorDataHandler);
+
+            //Kod för att stänga processer OCH applikationen vid "exit"-kommando
+            cmdProc.EnableRaisingEvents = true;
+            cmdProc.Exited += (sender, args) =>
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                {
+                    System.Windows.Application.Current.Shutdown();
+                });
+            };
 
             cmdProc.Start();
 
@@ -86,18 +97,8 @@ namespace PROJEKT_Mattias_Waldehagen
         {
             if (cmdProc != null && !cmdProc.HasExited)
             {
-                if (command.ToLower().Trim() == "exit")
-                {
-                    cmdProc.StandardInput.WriteLine("exit");
-                    cmdProc.StandardInput.Flush();
-                    //cmdProc.WaitForExit();
-                    System.Windows.Application.Current.Shutdown();
-                }
-                else
-                {
-                    cmdProc.StandardInput.WriteLine(command);
-                    cmdProc.StandardInput.Flush();
-                }
+                cmdProc.StandardInput.WriteLine(command);
+                cmdProc.StandardInput.Flush();
             }
         }
 
