@@ -6,9 +6,6 @@ using System.Diagnostics;
 
 namespace PROJEKT_Mattias_Waldehagen
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         // Globala variabler
