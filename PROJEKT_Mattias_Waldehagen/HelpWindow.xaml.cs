@@ -26,19 +26,18 @@ namespace PROJEKT_Mattias_Waldehagen
             InitializeComponent();
         }
 
+        //Sätter upp innehållet på hjälpsidan efter valt språk
         public void UpdateLanguage(string language)
         {
             SetupHelpTexts();
             lang = language;    
-
-            // FÖR VARJE KNAPPTRYCK IMPORTERA RÄTT TEXTSTYCKE
 
             DescriptonTextBlock.Text = helpTexts["DescriptionText_" + lang];
             UsageTextBlock.Text = helpTexts["UsageText_" + lang];
             ExampleTextBlock.Text = helpTexts["ExampleText_" + lang];
         }
 
-
+        //Läser cd-knapp
         private void cdButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["cd_Description_" + lang];
@@ -46,6 +45,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["cd_Example_" + lang];
         }
 
+        //Läser cd..-knapp
         private void cdBackButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["cd.._Description_" + lang];
@@ -54,6 +54,7 @@ namespace PROJEKT_Mattias_Waldehagen
 
         }
 
+        //Läser dir-knapp
         private void dirButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["dir_Description_" + lang];
@@ -61,6 +62,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["dir_Example_" + lang];
         }
 
+        //Läser cls-knapp
         private void clsButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["cls_Description_" + lang];
@@ -68,6 +70,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["cls_Example_" + lang];
         }
 
+        //Läser copy-knapp
         private void copyButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["copy_Description_" + lang];
@@ -75,6 +78,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["copy_Example_" + lang];
         }
 
+        //Läser del-knapp
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["del_Description_" + lang];
@@ -83,6 +87,7 @@ namespace PROJEKT_Mattias_Waldehagen
 
         }
 
+        //Läser move-knapp
         private void moveButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["move_Description_" + lang];
@@ -90,6 +95,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["move_Example_" + lang];
         }
 
+        //Läser rename-knapp
         private void renameButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["rename_Description_" + lang];
@@ -97,6 +103,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["rename_Example_" + lang];
         }
 
+        //Läser type-knapp
         private void typeButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["type_Description_" + lang];
@@ -104,6 +111,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["type_Example_" + lang];
         }
 
+        //Läser exit-knapp
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             DescriptionContainer.Text = helpTexts["exit_Description_" + lang];
@@ -111,6 +119,7 @@ namespace PROJEKT_Mattias_Waldehagen
             ExampleContainer.Text = helpTexts["exit_Example_" + lang];
         }
 
+        //Lägger in samtliga data som behövs i helpWindow på både engelska och svenska
         private void SetupHelpTexts()
         {
             helpTexts["DescriptionText_EN"] = "Description:";

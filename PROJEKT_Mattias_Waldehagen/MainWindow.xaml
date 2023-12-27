@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROJEKT_Mattias_Waldehagen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="735" Width="992">
+        Title="CMD4NOOBS" Height="735" Width="1010">
     <Window.Resources>
         <!-- Stil för rundade kanter till knapparna -->
         <Style x:Key="RoundedButton" TargetType="Button">
@@ -29,15 +29,15 @@
         <Image x:Name="LOGO" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Margin="88,46,0,0" Source="/CMD 4 NOOBS.png"/>
 
         <!-- Språkvalsknappar -->
-        <Button x:Name="svLang" Content="SV" Tag="SV" Click="LangButtonClick" HorizontalAlignment="Left" Margin="948,10,0,0" VerticalAlignment="Top" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
-        <Button x:Name="enLang" Content="EN" Tag="EN" Click="LangButtonClick" HorizontalAlignment="Left" Margin="921,10,0,0" VerticalAlignment="Top" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+        <Button x:Name="svLang" Content="SV" Tag="SV" Click="LangButtonClick" HorizontalAlignment="Left" Margin="964,10,0,0" VerticalAlignment="Top" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
+        <Button x:Name="enLang" Content="EN" Tag="EN" Click="LangButtonClick" HorizontalAlignment="Left" Margin="937,10,0,0" VerticalAlignment="Top" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" Cursor="Hand"/>
 
         <!-- Input och enterknapp -->
-        <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Margin="258,58,0,0" TextWrapping="Wrap" TextAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="520" Height="30" Background="#FFCFCD9B" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Padding="0,0,3,0" KeyDown="inputTextBox_KeyDown"/>
-        <Button x:Name="enterButton" Content="ENTER" HorizontalAlignment="Left" Margin="799,58,0,0" VerticalAlignment="Top" Foreground="Black" Background="#FFD3CC1C" Width="136" Height="30" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Style="{StaticResource RoundedButton}" Click="enterButton_Click" Cursor="Hand"/>
-        
+        <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Margin="255,614,0,0" TextWrapping="Wrap" TextAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="520" Height="30" Background="#FFCFCD9B" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Padding="0,0,3,0" KeyDown="inputTextBox_KeyDown"/>
+        <Button x:Name="enterButton" Content="ENTER" HorizontalAlignment="Left" Margin="796,614,0,0" VerticalAlignment="Top" Foreground="Black" Background="#FFD3CC1C" Width="136" Height="30" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Style="{StaticResource RoundedButton}" Click="enterButton_Click" Cursor="Hand"/>
+
         <!-- Output text block -->
-        <TextBlock x:Name="outputTextBlock" HorizontalAlignment="Left" Margin="258,106,0,0" Width="677" Height="550" TextWrapping="Wrap" VerticalAlignment="Top" Background="#3107AA" Foreground="White" FontSize="14" Padding="20,15,20,15"/>
+        <TextBlock x:Name="outputTextBlock" HorizontalAlignment="Left" Margin="255,46,0,0" Width="677" Height="550" TextWrapping="Wrap" VerticalAlignment="Top" Background="#3107AA" Foreground="White" FontSize="14" Padding="20,15,20,15"/>
 
         <!-- Knappar för funktioner och öppning av hjälpfönster -->
         <Button x:Name="cdButton" Content="cd" HorizontalAlignment="Left" Margin="43,166,0,0" VerticalAlignment="Top" Foreground="Black" Background="#FFD3CC1C" Width="76" Height="38" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Style="{StaticResource RoundedButton}" Click="cdButton_Click" Cursor="Hand"/>

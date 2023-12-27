@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROJEKT_Mattias_Waldehagen"
         mc:Ignorable="d"
-        Title="HelpWindow" Height="505" Width="560">
+        Title="Help" Height="505" Width="560">
     <Window.Resources>
         <!-- Rundade knappar -->
         <Style x:Key="RoundedButton" TargetType="Button">

@@ -90,7 +90,8 @@ namespace PROJEKT_Mattias_Waldehagen
                 {
                     cmdProc.StandardInput.WriteLine("exit");
                     cmdProc.StandardInput.Flush();
-                    cmdProc.WaitForExit();
+                    //cmdProc.WaitForExit();
+                    System.Windows.Application.Current.Shutdown();
                 }
                 else
                 {
