@@ -24,102 +24,44 @@ namespace PROJEKT_Mattias_Waldehagen
         public HelpWindow()
         {
             InitializeComponent();
+            SetupHelpTexts();
+            UpdateLanguage("EN");
         }
 
-        //Sätter upp innehållet på hjälpsidan efter valt språk
+        //Uppdaterar språket samt startar uppdateringsprocessen
         public void UpdateLanguage(string language)
         {
-            SetupHelpTexts();
-            lang = language;    
+            lang = language;
+            UpdateDisplayTexts();
+        }
 
+        //Uppdaterar de "statiska" textblocken
+        private void UpdateDisplayTexts()
+        {
             DescriptonTextBlock.Text = helpTexts["DescriptionText_" + lang];
             UsageTextBlock.Text = helpTexts["UsageText_" + lang];
             ExampleTextBlock.Text = helpTexts["ExampleText_" + lang];
         }
 
-        //Läser cd-knapp
-        private void cdButton_Click(object sender, RoutedEventArgs e)
+        //Visar den efterfrågade informationen i angivna textblock
+        private void UpdateCommandHelp(string command)
         {
-            DescriptionContainer.Text = helpTexts["cd_Description_" + lang];
-            UsageContainer.Text = helpTexts["cd_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["cd_Example_" + lang];
+            DescriptionContainer.Text = helpTexts[command + "_Description_" + lang];
+            UsageContainer.Text = helpTexts[command + "_Usage_" + lang];
+            ExampleContainer.Text = helpTexts[command + "_Example_" + lang];
         }
 
-        //Läser cd..-knapp
-        private void cdBackButton_Click(object sender, RoutedEventArgs e)
+        //Hanterar samtliga knapptryck och skickar vidare commandot till uppdaterings metoden
+        private void CommandButton_Click(object sender, RoutedEventArgs e)
         {
-            DescriptionContainer.Text = helpTexts["cd.._Description_" + lang];
-            UsageContainer.Text = helpTexts["cd.._Usage_" + lang];
-            ExampleContainer.Text = helpTexts["cd.._Example_" + lang];
-
+            if (sender is Button button)
+            {
+                string command = button.Tag.ToString();
+                UpdateCommandHelp(command);
+            }
         }
 
-        //Läser dir-knapp
-        private void dirButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["dir_Description_" + lang];
-            UsageContainer.Text = helpTexts["dir_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["dir_Example_" + lang];
-        }
-
-        //Läser cls-knapp
-        private void clsButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["cls_Description_" + lang];
-            UsageContainer.Text = helpTexts["cls_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["cls_Example_" + lang];
-        }
-
-        //Läser copy-knapp
-        private void copyButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["copy_Description_" + lang];
-            UsageContainer.Text = helpTexts["copy_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["copy_Example_" + lang];
-        }
-
-        //Läser del-knapp
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["del_Description_" + lang];
-            UsageContainer.Text = helpTexts["del_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["del_Example_" + lang];
-
-        }
-
-        //Läser move-knapp
-        private void moveButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["move_Description_" + lang];
-            UsageContainer.Text = helpTexts["move_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["move_Example_" + lang];
-        }
-
-        //Läser rename-knapp
-        private void renameButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["rename_Description_" + lang];
-            UsageContainer.Text = helpTexts["rename_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["rename_Example_" + lang];
-        }
-
-        //Läser type-knapp
-        private void typeButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["type_Description_" + lang];
-            UsageContainer.Text = helpTexts["type_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["type_Example_" + lang];
-        }
-
-        //Läser exit-knapp
-        private void exitButton_Click(object sender, RoutedEventArgs e)
-        {
-            DescriptionContainer.Text = helpTexts["exit_Description_" + lang];
-            UsageContainer.Text = helpTexts["exit_Usage_" + lang];
-            ExampleContainer.Text = helpTexts["exit_Example_" + lang];
-        }
-
-        //Lägger in samtliga data som behövs i helpWindow på både engelska och svenska
+        //Sätter upp allt innehåll på samtliga språk, kan och bör kanske refaktoreras till en eller flera externa filer för att slippa ladda språk som inte valts
         private void SetupHelpTexts()
         {
             helpTexts["DescriptionText_EN"] = "Description:";
@@ -144,7 +86,7 @@ namespace PROJEKT_Mattias_Waldehagen
 
             helpTexts["copy_Description_EN"] = "Copies one or more files from one location to another.";
             helpTexts["copy_Usage_EN"] = "copy source\\path\\file destination\\path\\file";
-            helpTexts["copy_Example_EN"] = "To copy a file from C:\text.txt to D:\backup\text.txt, you would type copy C:\text.txt D:\backup\text.txt";
+            helpTexts["copy_Example_EN"] = "To copy a file from C:\\text.txt to D:\\backup\\text.txt, you would type copy C:\\text.txt D:\\backup\\text.txt";
 
             helpTexts["del_Description_EN"] = "Deletes one or more files.";
             helpTexts["del_Usage_EN"] = "del path\\to\\file";
@@ -162,7 +104,7 @@ namespace PROJEKT_Mattias_Waldehagen
             helpTexts["type_Usage_EN"] = "type filename";
             helpTexts["type_Example_EN"] = "To display the contents of a file named text.txt, you would type 'type text.txt'.";
 
-            helpTexts["exit_Description_EN"] = "Closes the command prompt window or terminates the batch script.";
+            helpTexts["exit_Description_EN"] = "Closes the command prompt window or terminates the batch script, in this setting it also exits the application.";
             helpTexts["exit_Usage_EN"] = "exit";
             helpTexts["exit_Example_EN"] = "Simply type 'exit' to close the command prompt window.";
 
@@ -206,7 +148,7 @@ namespace PROJEKT_Mattias_Waldehagen
             helpTexts["type_Usage_SV"] = "type filnamn";
             helpTexts["type_Example_SV"] = "För att visa innehållet i en fil som heter text.txt, skulle du skriva 'type text.txt'.";
 
-            helpTexts["exit_Description_SV"] = "Stänger kommandotolksfönstret eller avslutar batchskriptet.";
+            helpTexts["exit_Description_SV"] = "Stänger kommandotolksfönstret eller avslutar batchskriptet. I denna setting avslutas även applikationen";
             helpTexts["exit_Usage_SV"] = "exit";
             helpTexts["exit_Example_SV"] = "Skriv bara 'exit' för att stänga kommandotolksfönstret.";
         }

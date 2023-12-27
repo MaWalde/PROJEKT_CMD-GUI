@@ -23,6 +23,24 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- Anpassad ScrollBar Style -->
+        <Style x:Key="CustomScrollBarStyle" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid>
+                            <Track Name="PART_Track">
+                                <Track.Thumb>
+                                    <Thumb Background="#3107AA" />
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid Background="#FF0A0317">
         <!-- Logotyp -->
@@ -37,8 +55,11 @@
         <Button x:Name="enterButton" Content="ENTER" HorizontalAlignment="Left" Margin="796,614,0,0" VerticalAlignment="Top" Foreground="Black" Background="#FFD3CC1C" Width="136" Height="30" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Style="{StaticResource RoundedButton}" Click="enterButton_Click" Cursor="Hand"/>
 
         <!-- Output text block -->
-        <TextBlock x:Name="outputTextBlock" HorizontalAlignment="Left" Margin="255,46,0,0" Width="677" Height="550" TextWrapping="Wrap" VerticalAlignment="Top" Background="#3107AA" Foreground="White" FontSize="14" Padding="20,15,20,15"/>
-
+        <Rectangle x:Name="textContainer" HorizontalAlignment="Left" Height="550" Width="677" Margin="255,46,0,0" VerticalAlignment="Top" Fill="#3107AA" RadiusX="5" RadiusY="5" Grid.Row="1"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Width="655" Height="550" Margin="273,46,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock x:Name="outputTextBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Background="#3107AA" Foreground="White" FontSize="14" Padding="0,15,0,15"/>
+        </ScrollViewer>
+        
         <!-- Knappar för funktioner och öppning av hjälpfönster -->
         <Button x:Name="cdButton" Content="cd" HorizontalAlignment="Left" Margin="43,166,0,0" VerticalAlignment="Top" Foreground="Black" Background="#FFD3CC1C" Width="76" Height="38" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Style="{StaticResource RoundedButton}" Click="cdButton_Click" Cursor="Hand"/>
         <Button x:Name="cdBackButton" Content="cd.." HorizontalAlignment="Left" Margin="145,166,0,0" VerticalAlignment="Top" Foreground="Black" Background="#FFD3CC1C" Width="76" Height="38" FontSize="16" FontWeight="ExtraBold" FontFamily="Arial" Style="{StaticResource RoundedButton}" Click="cdBackButton_Click" Cursor="Hand"/>
