@@ -23,17 +23,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!-- Anpassad ScrollBar Style -->
-        <Style x:Key="CustomScrollBarStyle" TargetType="{x:Type ScrollBar}">
-            <Setter Property="Width" Value="8"/>
-            <Setter Property="Background" Value="Gray"/>
+        <!-- Anpassad Scrollstil -->
+        <Style TargetType="{x:Type ScrollBar}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ScrollBar}">
-                        <Grid>
-                            <Track Name="PART_Track">
+                        <Grid Background="Transparent">
+                            <Track x:Name="PART_Track" IsDirectionReversed="True">
                                 <Track.Thumb>
-                                    <Thumb Background="#3107AA" />
+                                    <Thumb Background="#FF0A0317" BorderBrush="Transparent" BorderThickness="0"/>
                                 </Track.Thumb>
                             </Track>
                         </Grid>
@@ -41,6 +39,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
     <Grid Background="#FF0A0317">
         <!-- Logotyp -->
