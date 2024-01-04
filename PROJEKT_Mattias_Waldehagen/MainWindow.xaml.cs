@@ -84,6 +84,10 @@ namespace PROJEKT_Mattias_Waldehagen
             {
                 cmdProc.StandardInput.WriteLine(command);
                 cmdProc.StandardInput.Flush();
+                if (command.Trim().ToLower() == "cls")
+                {
+                    outputTextBlock.Text = string.Empty;
+                }
             }
         }
 
